@@ -1,13 +1,17 @@
 const express = require('express')
+const mongoose = require('mongoose')
+const keys = require('./config/keys')
 require('./services/passport')
+require('./models/User')
 
+mongoose.connect(keys.mongoURI)
 
 const app = express();
 
 require('./routes/authRoutes')(app);
 
 //Dynamic Port Binding, Heroku will assign a port 
-//to the environment variable, PORT 
+//to the environment variable, PORT  
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT)
