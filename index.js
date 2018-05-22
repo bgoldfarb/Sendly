@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 const keys = require('./config/keys')
-
+const bodyParser = require('body-parser')
 require('./models/User')
 require('./services/passport')
 
@@ -12,6 +12,7 @@ mongoose.connect(keys.mongoURI)
 
 const app = express();
 
+app.use(bodyParser.json()) //any time a request comes into app, this will asign to rect.body.property of incoming request object
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000, //This is in ms
