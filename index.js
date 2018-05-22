@@ -23,6 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app)
 
 //Dynamic Port Binding, Heroku will assign a port 
 //to the environment variable, PORT  
